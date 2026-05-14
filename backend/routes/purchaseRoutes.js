@@ -1,0 +1,1 @@
+import express from 'express';import { getPurchases,createPurchase } from '../controllers/purchaseController.js';import { protect } from '../middleware/authMiddleware.js';const router=express.Router();router.use(protect);router.get('/',getPurchases);router.post('/',createPurchase);export default router;

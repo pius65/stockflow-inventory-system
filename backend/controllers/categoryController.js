@@ -1,0 +1,5 @@
+import { query } from '../config/db.js';
+export async function getCategories(req,res){try{res.json(await query('SELECT c.*, COUNT(p.id) product_count FROM categories c LEFT JOIN products p ON p.category_id=c.id GROUP BY c.id ORDER BY c.name'));}catch(e){res.status(500).json({message:e.message});}}
+export async function createCategory(req,res){try{const {name,description}=req.body;if(!name)return res.status(400).json({message:'Category name required.'});const r=await query('INSERT INTO categories (name,description) VALUES (?,?)',[name,description||'']);res.status(201).json({id:r.insertId,name,description});}catch(e){res.status(500).json({message:e.message});}}
+export async function updateCategory(req,res){try{const {name,description}=req.body;await query('UPDATE categories SET name=?, description=? WHERE id=?',[name,description||'',req.params.id]);res.json({message:'Category updated.'});}catch(e){res.status(500).json({message:e.message});}}
+export async function deleteCategory(req,res){try{await query('DELETE FROM categories WHERE id=?',[req.params.id]);res.json({message:'Category deleted.'});}catch(e){res.status(500).json({message:e.message});}}
