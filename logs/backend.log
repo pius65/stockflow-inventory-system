@@ -1,0 +1,6 @@
+
+> stockflow-backend@1.0.0 start
+> node server.js
+
+StockFlow API running on port 5000
+[0mGET / [32m200[0m 2.969 ms - 48[0m
