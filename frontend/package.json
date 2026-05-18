@@ -1,14 +1,11 @@
 {
-  "name": "stockflow-frontend",
+  "name": "marketflow-frontend",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "vite": "^5.1.6"
+    "dev": "node server.js",
+    "build": "node --check app.js",
+    "check": "node --check app.js && node --check server.js"
   }
 }
